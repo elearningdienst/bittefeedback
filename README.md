@@ -2,6 +2,8 @@
 
 Mithilfe dieses Codes kannst Du einfach und unkompliziert Feedback zu Vorträgen oder Veranstaltungen erfragen. Es ist keine Registrierung erforderlich und es werden keine persönlichen Daten erhoben. Du kannst das Tool hier ausprobieren: https://bittefeedback.de
 
+Ich habe diese Version für meine persönliche Nutzung im [eBildungslabor](https://ebildungslabor.de) online gestellt. 
+
 ## Installation
 
 Für eine eigene Installation musst Du Dir zunächst eine Datenbank anlegen. Anschließend lädst Du Dir dieses Verzeichnis herunter und kopierst es in das Verzeichnis Deiner Website. Die Angaben zur Datenbank musst Du in der Datei config.php eingeben.  
@@ -24,6 +26,10 @@ provided that:
 - you unconditionally provide a copy of the source code including your
   modifications.
 
+## Credits
 
+Den Original-Code findest Du hier: https://github.com/lgommans/presentation-feedback
+Diese Modifikation verwendet Teile eines Templates von HTML5UP: https://html5up.net/
+Hintergrundbild von Unsplash: https://unsplash.com/photos/KvTOwKoji7g
 
 
