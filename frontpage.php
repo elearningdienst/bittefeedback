@@ -4,20 +4,25 @@
 	}
 
 	?>
-<section style="display: inline-block; width: 320px;">
-	<b>Give feedback on a presentation</b>
-	<form>
-		Presentation code<br>
+
+
+<h1>BitteFeedback.de</h1>
+							<p class="major">Offenes Online-Feedback-Tool für unkomplizierte und anonyme Feedback-Übermittlung</p>
+
+	<p><form>
+		Code eingeben:<br>
 		<input name=code><br>
-		<input type=submit value=Start>
-	</form>
-</section>
-<section style="display: inline-block; width: 320px; float: right; border-left: 1px solid black; padding-left: 55px;">
-	<b>Get feedback on your presentation</b>
-	<form method=post>
-		Presentation title<br>
+		<input type=submit value=Los>
+	</form></p>
+
+<hr>
+<p><small>
+<form method=post>
+Wenn Du stattdessen ein eigenes Feedback-Formular erstellen möchtest, dann gib hier den Titel Deiner Präsentation/ Deiner Veranstaltung an:<br>
 		<input name=title><br>
-		<input type=submit value=Next>
+		<input type=submit value=Erstellen>
 	</form>
-</section>
+</small>
+</p>
+
 
