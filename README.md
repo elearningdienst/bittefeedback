@@ -7,6 +7,9 @@ Ich habe diese Version für meine persönliche Nutzung im [eBildungslabor](https
 ## Installation
 
 Für eine eigene Installation musst Du Dir zunächst eine Datenbank anlegen. Anschließend lädst Du Dir dieses Verzeichnis herunter und kopierst es in das Verzeichnis Deiner Website. Die Angaben zur Datenbank musst Du in der Datei config.php eingeben.  
+Als Layout verwende ich auf meiner Website das 'Story'-Template von [HTML5UP](https://html5up.net/). Für eine ähnliche Darstellungweise musst Du Dir das Template herunterladen und den 'Assets' Ordner zusätzlich ins Verzeichnis Deiner Website laden.
+
+Das von mir verwendete Hintergrundbild stammt von Unsplash: https://unsplash.com/photos/KvTOwKoji7g
 
 ## Lizenz /Licence
 
@@ -29,7 +32,6 @@ provided that:
 ## Credits
 
 Den Original-Code findest Du hier: https://github.com/lgommans/presentation-feedback
-Diese Modifikation verwendet Teile eines Templates von HTML5UP: https://html5up.net/
-Hintergrundbild von Unsplash: https://unsplash.com/photos/KvTOwKoji7g
+
 
 
