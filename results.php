@@ -3,12 +3,9 @@
 		exit;
 	}
 ?>
-<section style="display: inline-block; width: 710px;">
+<section>
 	<style>
-		h1 {
-			font-size: 18pt;
-			margin: 0;
-		}
+		
 		.star {
 			font-size: 16pt;
 		}
@@ -18,11 +15,11 @@
 		FROM presentations p
 		INNER JOIN presentation_questions pq ON pq.presentationid = p.id
 		WHERE secret = "' . $db->escape_string($_GET['secret']) . '"')
-		or die('Database error 58148. Please try again in a minute.');
+		or die('Bitte versuche es in wenigen Minuten erneut.');
 	
 	$row = $result->fetch_row();
 	if ($row[0] === NULL) {
-		die('Presentation secret not found. <a href="./">Go to the homepage</a>');
+		die('Dieser Link ist ungültig. <a href="./">Zurück zur Homepage</a>');
 	}
 
 	$presentationid = $row[0];
@@ -31,19 +28,8 @@
 	$link = $row[3];
 	$questionCount = $row[4];
 
-	echo "Results of feedback on...";
-	echo '<h1>' . htmlspecialchars($title) . '</h1>';
-	echo '&mdash; <i>' . htmlspecialchars($speaker) . '</i>';
-	if (!empty($link)) {
-		if (substr($link, 0, 4) !== 'http') {
-			$reallink = 'http://' . $link;
-			$reallink = htmlspecialchars($reallink);
-		}
-		else {
-			$reallink = htmlspecialchars($link);
-		}
-		echo ", <a href='$reallink'>$link</a>";
-	}
+	echo '<h1>Eingereichtes Feedback zu <i>' . htmlspecialchars($title) . '</i></h1>';
+	
 	echo "<br><br>";
 
 	if (isset($_GET['question'])) {
@@ -54,12 +40,12 @@
 	}
 
 	if ($question_n > 0) {
-		echo "<input type=button value='Previous question' onclick='location=\"?secret="
+		echo "<input type=button value='Vorherige Frage' onclick='location=\"?secret="
 			. htmlspecialchars($_GET['secret']) . "&question=" . ($question_n - 1) . "\";'>";
 	}
 
 	if ($question_n < $questionCount - 1) {
-		echo "<input type=button value='Next question' onclick='location=\"?secret="
+		echo "<input type=button value='Nächste Frage' onclick='location=\"?secret="
 			. htmlspecialchars($_GET['secret']) . "&question=" . ($question_n + 1) . "\";'>";
 	}
 
@@ -76,7 +62,7 @@
 		") or die('Database error 71598.');
 
 	if ($result->num_rows == 0) {
-		die('Question not found');
+		die('Noch keine Antworten');
 	}
 	$responses = [];
 	$avg = 0;
@@ -91,12 +77,12 @@
 		}
 	}
 
-	echo "Question " . ($question_n + 1) . ": '<i>" . htmlspecialchars($question) . "</i>'<br>";
+	echo "Frage " . ($question_n + 1) . ": '<i>" . htmlspecialchars($question) . "</i>'<br>";
 
 	if ($type == 1) {
 		// 5-star rating
 		$avg = round($avg / $nonBlankResponses * 10) / 10;
-		echo "Average rating: " . $avg . " out of 5. Individual ratings:<br>";
+		echo "Durchschnittliche Bewertung: " . $avg . " von 5. Individuelle Bewertungen:<br>";
 		$wstar = '&#9734;'; // white star
 		$bstar = '&#9733;'; // black star
 		foreach ($responses as $n=>$response) {
