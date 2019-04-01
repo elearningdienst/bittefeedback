@@ -1,12 +1,11 @@
 <?php
 // Your database configuration
-$db_host = 'p:localhost';
-$db_user = 'root';
-$db_pass = '';
-$db_name = 'feedbacktool';
+$db_host = 'dein servername';
+$db_user = 'login zur datenbank';
+$db_pass = 'passwort';
+$db_name = 'datenbankname';
 
 // Link to use in emails to link to this site. MUST include the final slash (/).
-$email_url = 'http://localhost/presentation-feedback/';
+$email_url = 'xxx';
 // Where should emails appear to come from?
-$email_from = 'presentation-feedback-tool@example.org';
-
+$email_from = 'xxx';
