@@ -3,7 +3,7 @@
 		exit;
 	}
 ?>
-<section style="display: inline-block; width: 710px;">
+
 <?php 
 	if (isset($_POST['name'])) {
 		$code = bin2hex(openssl_random_pseudo_bytes(3));
@@ -27,10 +27,10 @@
 			$questionNumber++;
 		}
 
-		$publink = "$email_url?code=$code";
-		$privlink = "$email_url?secret=$secret";
-		$email = "Your audience code: $code<br>The direct link: <a href='$publink'>$publink</a><br><br>"
-			. "Your private link to view the results: <a href='$privlink'>$privlink</a>";
+		$publink = "https://bittefeedback.de/?code=$code";
+		$privlink = "https://bittefeedback.de/?secret=$secret";
+		$email = "<h1>Super, das hat geklappt!</h1><p><strong>Bitte notiere Dir die folgenden Angaben gut. Wenn Du sie verlierst, hast Du keinen Zugriff zu Deinem Feedback.</strong></p><h3>Code für Dein Feedback-Formular: $code </h3>(Direkter Link: <a href='$publink'>$publink</a>)<br><br>"
+			. "<h3>Link zu den Feedback-Ergebnissen: <a href='$privlink'>$privlink</a></h3>Entscheide selbst, ob Du den Ergebnislink ebenfalls teilen oder nur für Dich behalten willst.";
 
 		if (!empty($_POST['email'])) {
 			$addr = md5($_POST['email'] . round($time / 60));
@@ -51,37 +51,33 @@
 	}
 	else {
 		?>
-			<style>
-				input {
-					width: 400px;
-				}
-			</style>
+			
 			<form method=post>
-			<b>Information to show visitors</b><br>
-			<br>
-			Presentation title<br>
+			<h1>Informationen für Dein Feedback-Formular</h1>
+			<h3>Rahmendaten</h3>
+			<p>Titel Deiner Präsentation/ Name der Veranstaltung<br>
 			<input name=title value="<?php echo htmlspecialchars($_POST['title']); ?>" maxlength=255><br>
-			<br>
-			Your name<br>
+			</p>
+			<p>Dein Name<br>
 			<input name=name maxlength=255><br>
-			<br>
-			A link, e.g. your website or Twitter account<br>
+			</p>
+<p>Weiterführender Link z.B. zu Deiner Website, Deinem Twitter-Account ... (optional, wird Feedback-Gebenden nach dem Ausfüllen des Fedback-Formulars angezeigt)<br>
 			<input name=link maxlength=255><br>
-			<br>
-			<b>Questions</b><br>
-			<br>
+			</p>
+
+			<h3>Fragen</h3>
+			<p>Du kannst zwischen zwei Fragetypen auswählen: Sternen-Bewertung oder offene Beantwortung als Textfeld.
 			<div id="questions"></div>
-			<input type=button value='Add question' onclick='addQuestion();'><br>
-			<br>
+			<input type=button value='Frage hinzufügen' onclick='addQuestion();'><br>
+			</p>
 			<hr>
-			<br>
-			After clicking 'create', you will be given a public code (to give your audience, valid for 2 weeks) and a private code (to view the results).
-			If you want to email these to yourself, enter your email address here (optional). The address will be used once and is not stored.<br>
-			<br>
-			Email address<br>
-			<input name=email type=email maxlength=255><br>
-			<br>
-			<input type=submit value=Create>
+
+<p>Mit Klick auf 'Erstellen' wird Dein Feedback-Formular veröffentlicht. Es ist für 14 Tage gültig und wird danach gelöscht.</p>
+
+			
+			<p>
+			<input type=submit value=Erstellen></p>
+
 		<script>
 			function $(q) {
 				return document.querySelector(q);
@@ -89,8 +85,8 @@
 			function addQuestion() {
 				qcounter++;
 				var question = document.createElement('div');
-				question.innerHTML = 'Question ' + qcounter.toString() + '<br><input maxlength=255 name="question[]"><br>'
-					+ '<select name="type[]"><option value=1>Star rating</option><option value=2>Text field</option></select><br><br>';
+				question.innerHTML = 'Frage ' + qcounter.toString() + '<br><input maxlength=255 name="question[]"><br>'
+					+ '<select name="type[]"><option value=1>Sterne vergeben</option><option value=2>Textfeld</option></select><br><br>';
 				$("#questions").appendChild(question);
 			}
 			qcounter = 0;
@@ -99,5 +95,4 @@
 		<?php 
 	}
 ?>
-</section>
 
