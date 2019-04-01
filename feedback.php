@@ -3,12 +3,9 @@
 		exit;
 	}
 ?>
-<section style="display: inline-block; width: 710px;">
+<section>
 	<style>
-		h1 {
-			font-size: 18pt;
-			margin-bottom: 0;
-		}
+		
 		.star {
 			cursor: pointer;
 			font-size: 16pt;
@@ -27,7 +24,7 @@
 		or die('Database error 5. Please try again in a minute.');
 	
 	if ($result->num_rows == 0) {
-		die('Presentation code not found. <a href="./">Enter a different one</a>');
+		die('Dieser Code ist nicht bekannt. Hast Du Dich vertippt? <a href="./">Versuche es erneut!</a>');
 	}
 
 	$row = $result->fetch_row();
@@ -36,19 +33,9 @@
 	$speaker = $row[2];
 	$link = $row[3];
 
-	echo '<h1>' . htmlspecialchars($title) . '</h1>';
-	echo '&mdash; <i>' . htmlspecialchars($speaker) . '</i>';
-	if (!empty($link)) {
-		if (substr($link, 0, 4) !== 'http') {
-			$reallink = 'http://' . $link;
-			$reallink = htmlspecialchars($reallink);
-		}
-		else {
-			$reallink = htmlspecialchars($link);
-		}
-		echo ", <a href='$reallink'>$link</a>";
-	}
-	echo "<br><br>";
+	echo '<h1>Feedback geben zu <i>' . htmlspecialchars($title) . '</i></h1>';
+	echo '<h3>Erstellt von ' . htmlspecialchars($speaker) . '</h3>';
+	
 
 	if (isset($_POST['code'])) {
 		$db->query("INSERT INTO presentation_feedback (presentationid) VALUES($presentationid)")
@@ -64,7 +51,20 @@
 				or die('Database error 1525');
 			$i++;
 		}
-		echo "<strong>Thank you for your feedback!</strong>";
+		echo "<p><h1>Vielen Dank für das Feedback!</strong></h1>";
+
+if (!empty($link)) {
+		if (substr($link, 0, 4) !== 'http') {
+			$reallink = 'http://' . $link;
+			$reallink = htmlspecialchars($reallink);
+		}
+		else {
+			$reallink = htmlspecialchars($link);
+		}
+		echo "<a href='$reallink'>Hier findest Du weitere Informationen im Kontext der bewerteten Präsentation/ Veranstaltung</a>";
+	}
+	echo "<p>Hier gelangst Du zurück zur <a href=https://bittefeedback.de>Startseite von BitteFeedback.de</a></p>";
+
 	}
 	else {
 		$result = $db->query('SELECT pq.sequenceNumber, pq.question, pq.type
@@ -110,7 +110,7 @@
 						}
 					}
 				?>
-				<input type=submit value=Submit>
+				<input type=submit value=Senden>
 			</form>
 			<script>
 				function $(q) {
